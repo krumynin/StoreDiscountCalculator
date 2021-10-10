@@ -22,11 +22,13 @@ namespace StoreDiscountCalculator.Tests
             basket.AddProduct(new Product("5", "e", 100));
 
             var discountClientMock = new Mock<IDiscountClient>();
-            discountClientMock.Setup(d => d.GetDiscountByCodes(request)).Returns(response);
+            discountClientMock.Setup(d => d.GetDiscountByCodes(request)).Returns(response).Verifiable();
 
             var calculator = new Calculator(discountClientMock.Object);
 
             Assert.Equal(result, calculator.GetTotalPrice(basket));
+
+            discountClientMock.Verify();
         }
     }
 

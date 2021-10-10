@@ -4,14 +4,14 @@ namespace StoreDiscountCalculator.Components
 {
     public class Basket
     {
-        private ICollection<Product> _products;
+        private List<Product> _products;
 
         public Basket()
         {
             _products = new List<Product>();
         }
 
-        public ICollection<Product> GetProducts()
+        public List<Product> GetProducts()
         {
             return _products;
         }
@@ -23,7 +23,7 @@ namespace StoreDiscountCalculator.Components
 
         public void RemoveProduct(Product product)
         {
-            _products.Remove(product);
+            _products.RemoveAll(p => p.GetCode() == product.GetCode());
         }
     }
 }

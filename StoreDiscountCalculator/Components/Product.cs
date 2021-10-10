@@ -1,5 +1,6 @@
 namespace StoreDiscountCalculator.Components
 {
+    //todo. properties ???
     public class Product
     {
         private string _code;
