@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Moq;
 using StoreDiscountCalculator.Clients;
 using StoreDiscountCalculator.Components;
+using StoreDiscountCalculator.Strategy;
 using Xunit;
 
 namespace StoreDiscountCalculator.Tests
@@ -24,7 +25,7 @@ namespace StoreDiscountCalculator.Tests
             var discountClientMock = new Mock<IDiscountClient>();
             discountClientMock.Setup(d => d.GetDiscountByCodes(request)).Returns(response).Verifiable();
 
-            var calculator = new Calculator(discountClientMock.Object);
+            var calculator = new Calculator(discountClientMock.Object, new BaseProductStrategy());
 
             Assert.Equal(result, calculator.GetTotalPrice(basket));
 
